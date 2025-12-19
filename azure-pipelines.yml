@@ -1,0 +1,41 @@
+
+
+trigger:
+- main
+ 
+pool:
+  name: newagent
+ 
+stages:
+- stage: Terraform
+  displayName: Terraform ToDo Infra
+  jobs:
+  - job: Infra
+    displayName: ToDo Infra
+    steps:
+ 
+    - task: TerraformInstaller@1
+      displayName: Terraform Install
+      inputs:
+        terraformVersion: '1.12.2'
+ 
+    - task: TerraformTaskV4@4
+      displayName: Terraform Init
+      inputs:
+        provider: 'azurerm'
+        command: 'init'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Enviornment/dev'
+        backendServiceArm: 'ToDo-SC'
+        backendAzureRmOverrideSubscriptionID: '426a305f-f503-4960-8345-66640721b789'
+        backendAzureRmResourceGroupName: 'rg-terraform-backend'
+        backendAzureRmStorageAccountName: 'tfbackendstorage321'
+        backendAzureRmContainerName: 'tfstate'
+        backendAzureRmKey: 'bhawesh.terraform.tfstate'
+   
+    - task: TerraformTaskV4@4
+      displayName: Terraform Plan
+      inputs:
+        provider: 'azurerm'
+        command: 'plan'
+        workingDirectory: '$(System.DefaultWorkingDirectory)/Enviornment/dev'
+        environmentServiceNameAzureRM: 'ToDo-SC'
