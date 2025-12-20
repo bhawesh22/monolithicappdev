@@ -47,14 +47,14 @@ pip = {
     name                = "pip-frontend-dev"
     location            = "NorthEurope"
     resource_group_name = "rg-todo-app-dev"
-    allocation_method   = "Dyanamic"
+    allocation_method   = "Static"
     sku                 = "Basic"
   }
   "backend-pip" = {
     name                = "pip-backend-dev"
     location            = "NorthEurope"
     resource_group_name = "rg-todo-app-dev"
-    allocation_method   = "Dynamic"
+    allocation_method   = "Static"
     sku                 = "Basic"
   }
 }
