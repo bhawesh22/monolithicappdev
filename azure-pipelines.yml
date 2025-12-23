@@ -4,7 +4,7 @@ trigger:
 - main
  
 pool:
-  name: newagent
+  name: bhaweshnew
  
 stages:
 - stage: Terraform
