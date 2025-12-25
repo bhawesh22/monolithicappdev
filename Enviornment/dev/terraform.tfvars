@@ -48,14 +48,14 @@ pip = {
     location            = "NorthEurope"
     resource_group_name = "rg-todo-app-dev"
     allocation_method   = "Static"
-    sku                 = "Basic"
+    sku                 = "Standard"
   }
   "backend-pip" = {
     name                = "pip-backend-dev"
     location            = "NorthEurope"
     resource_group_name = "rg-todo-app-dev"
     allocation_method   = "Static"
-    sku                 = "Basic"
+    sku                 = "Standard"
   }
 }
 
