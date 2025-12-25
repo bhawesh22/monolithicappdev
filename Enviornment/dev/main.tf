@@ -7,6 +7,7 @@ module "rgs" {
 module "networking" {
   source = "../../Modules/azurerm_networking"
   vnets  = var.vnets
+  depends_on =[module.rgs]
 }
 
 module "pip" {
@@ -22,6 +23,8 @@ module "pip" {
 module "key_vaults" {
   source     = "../../Modules/azurerm_key_vault"
   key_vaults = var.key_vaults
+ depends_on = [
+    module.rgs]
 }
 
 module "compute" {
@@ -30,7 +33,7 @@ module "compute" {
 
   depends_on = [
     module.networking,
-    module.pip
+    module.pip,module.rgs
   ]
 }
 
@@ -51,7 +54,7 @@ module "sql_server" {
 }
 
 module "sql_db" {
-  depends_on  = [module.sql_server]
+  depends_on  = [module.sql_server, module.rgs]
   source      = "../../Modules/azurerm_sql_database"
   server_id   = module.sql_server.server_id
   max_size_gb = "2"
