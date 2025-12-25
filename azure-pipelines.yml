@@ -39,3 +39,13 @@ stages:
         command: 'plan'
         workingDirectory: '$(System.DefaultWorkingDirectory)/Enviornment/dev'
         environmentServiceNameAzureRM: 'bhaweshscp'
+
+    - task: TerraformTask@5
+      displayName: terraform apply
+      inputs:
+       provider: 'azurerm'
+       command: 'apply'
+       workingDirectory: '$(System.DefaultWorkingDirectory)/Enviornment/dev'
+       commandOptions: '--auto-approve'
+       environmentServiceNameAzureRM: 'bhaweshscp'
+       environmentAzureRmOverrideSubscriptionID: '18bbb1ca-f79e-49b4-8669-5a1208da00f7'
